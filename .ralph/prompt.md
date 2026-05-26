@@ -99,4 +99,6 @@ If the task is not complete, add a note to the issue file with what was done.
 
 # FINAL RULES
 
-ONLY WORK ON A SINGLE TASK & DO NOT USE SUBAGENTS
+- ONLY WORK ON A SINGLE TASK
+- DO NOT USE SUBAGENTS
+- DO NOT ASK ANY QUESTIONS
