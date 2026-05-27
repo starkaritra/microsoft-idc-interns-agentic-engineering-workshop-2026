@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Getting Started · From Vibe Coding to Agentic Engineering</title>
+  <meta name="description" content="Workshop setup guide — prerequisites and environment setup for the From Vibe Coding to Agentic Engineering workshop." />
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #11172e;
+      --panel: #141a33;
+      --panel-2: #1a2142;
+      --border: #232a4d;
+      --text: #e6e9f5;
+      --muted: #9aa3c7;
+      --brand: #7c9cff;
+      --brand-2: #b48bff;
+      --accent: #4ade80;
+      --danger: #f87171;
+      --code-bg: #0a0f24;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --radius: 14px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fc;
+        --bg-soft: #ffffff;
+        --panel: #ffffff;
+        --panel-2: #f1f3fb;
+        --border: #e3e6f1;
+        --text: #0e1430;
+        --muted: #5b6586;
+        --brand: #3b5bdb;
+        --brand-2: #7048e8;
+        --accent: #2f9e44;
+        --code-bg: #0e1430;
+        --shadow: 0 8px 24px rgba(20, 28, 60, 0.08);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-feature-settings: 'cv11', 'ss01', 'ss03';
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .bg-grad {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(124,156,255,0.18), transparent 60%),
+        radial-gradient(700px 400px at 100% 0%, rgba(180,139,255,0.16), transparent 60%);
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 56px 24px 96px; }
+
+    header.hero { margin-bottom: 40px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--brand);
+      padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px;
+      background: var(--panel);
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 44px);
+      line-height: 1.15; margin: 18px 0 12px; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lede { color: var(--muted); font-size: 17px; max-width: 65ch; margin: 0; }
+
+    nav.toc {
+      margin-top: 28px;
+      padding: 16px 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 24px; }
+    nav.toc li { margin: 4px 0; break-inside: avoid; }
+    nav.toc a { color: var(--text); text-decoration: none; }
+    nav.toc a:hover { color: var(--brand); }
+
+    section.step {
+      margin-top: 40px;
+      padding: 28px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .step-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white; font-weight: 700; font-size: 14px;
+      box-shadow: 0 4px 14px rgba(124,156,255,0.35);
+    }
+    h2 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+    h3 { font-size: 16px; margin: 22px 0 8px; color: var(--text); }
+    p { margin: 10px 0; color: var(--text); }
+    .muted { color: var(--muted); }
+
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ul.clean { padding-left: 20px; margin: 10px 0; }
+    ul.clean li { margin: 6px 0; }
+
+    .callout {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-left: 3px solid var(--brand);
+      background: var(--panel-2);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14.5px;
+    }
+    .callout.warn { border-left-color: var(--danger); }
+    .callout.ok { border-left-color: var(--accent); }
+    .callout strong { color: var(--text); }
+
+    pre {
+      position: relative;
+      background: var(--code-bg);
+      color: #e6e9f5;
+      padding: 14px 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 13.5px;
+      line-height: 1.55;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin: 10px 0;
+    }
+    pre code { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code.inline {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-size: 0.92em;
+    }
+    .copy-btn {
+      position: absolute; top: 8px; right: 8px;
+      background: rgba(255,255,255,0.06);
+      color: #e6e9f5;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s ease, background 0.15s ease;
+    }
+    pre:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { background: rgba(255,255,255,0.12); }
+    .copy-btn.copied { background: rgba(74, 222, 128, 0.18); border-color: rgba(74,222,128,0.4); }
+
+    .tag {
+      display: inline-block; font-size: 11.5px; font-weight: 600;
+      padding: 2px 8px; border-radius: 999px;
+      background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    footer {
+      margin-top: 56px; text-align: center; color: var(--muted); font-size: 13px;
+    }
+    footer a { color: var(--muted); }
+
+    @media (max-width: 600px) {
+      nav.toc ol { columns: 1; }
+      .container { padding: 32px 18px 64px; }
+      section.step { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grad"></div>
+
+  <main class="container">
+    <header class="hero">
+      <span class="eyebrow">Workshop · 2026</span>
+      <h1>Getting Started</h1>
+      <p class="lede">
+        Set up your machine for the <strong>From Vibe Coding to Agentic Engineering</strong> workshop.
+        Follow the steps below in order — should take ~15 minutes.
+      </p>
+
+      <nav class="toc" aria-label="Table of contents">
+        <ol>
+          <li><a href="#vscode">VS Code &amp; GitHub Copilot</a></li>
+          <li><a href="#powershell">PowerShell 7+</a></li>
+          <li><a href="#gh-cli">GitHub CLI</a></li>
+          <li><a href="#gh-auth">Sign in with your EMU account</a></li>
+          <li><a href="#gh-copilot">GitHub Copilot CLI</a></li>
+          <li><a href="#clone">Clone the workshop repo</a></li>
+          <li><a href="#backend">Run the backend</a></li>
+          <li><a href="#frontend">Run the frontend</a></li>
+          <li><a href="#seed">Seed sample data</a></li>
+          <li><a href="#verify">Verify everything works</a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <!-- 1. VS Code -->
+    <section class="step" id="vscode">
+      <div class="step-head"><span class="step-num">1</span><h2>VS Code &amp; GitHub Copilot</h2></div>
+      <p>Install the latest <a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">Visual Studio Code</a>.</p>
+      <div class="callout">
+        <strong>On a Microsoft-managed device,</strong> GitHub Copilot Chat is typically pre-installed and signed in via your corporate account. Open the Copilot panel (the chat icon in the Activity Bar) to confirm.
+      </div>
+      <p>If Copilot is not present, install these extensions from the Marketplace:</p>
+      <ul class="clean">
+        <li><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" target="_blank" rel="noopener">GitHub Copilot</a></li>
+        <li><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat" target="_blank" rel="noopener">GitHub Copilot Chat</a></li>
+      </ul>
+      <p>Or run from a terminal:</p>
+      <pre><code>code --install-extension GitHub.copilot
+code --install-extension GitHub.copilot-chat</code></pre>
+    </section>
+
+    <!-- 2. PowerShell -->
+    <section class="step" id="powershell">
+      <div class="step-head"><span class="step-num">2</span><h2>PowerShell 7+ <span class="tag">Windows</span></h2></div>
+      <p>The workshop assumes <strong>PowerShell 7 or newer</strong> (not the old Windows PowerShell 5.1 that ships with Windows). Check your version:</p>
+      <pre><code>$PSVersionTable.PSVersion</code></pre>
+      <p>If the <code class="inline">Major</code> version is below 7, install it via <a href="https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows" target="_blank" rel="noopener">winget</a>:</p>
+      <pre><code>winget install --id Microsoft.PowerShell --source winget</code></pre>
+      <div class="callout ok">
+        <strong>Tip:</strong> Set PowerShell 7 (<code class="inline">pwsh</code>) as the default terminal in VS Code:
+        open the Command Palette (<code class="inline">Ctrl+Shift+P</code>) → <em>Terminal: Select Default Profile</em> → <em>PowerShell</em>.
+      </div>
+    </section>
+
+    <!-- 3. GitHub CLI -->
+    <section class="step" id="gh-cli">
+      <div class="step-head"><span class="step-num">3</span><h2>GitHub CLI</h2></div>
+      <p>Install the <a href="https://cli.github.com/" target="_blank" rel="noopener">GitHub CLI</a>:</p>
+      <pre><code>winget install --id GitHub.cli --source winget</code></pre>
+      <p>Close and reopen your terminal, then verify:</p>
+      <pre><code>gh --version</code></pre>
+    </section>
+
+    <!-- 4. gh auth -->
+    <section class="step" id="gh-auth">
+      <div class="step-head"><span class="step-num">4</span><h2>Sign in with your EMU account</h2></div>
+      <p>
+        Microsoft employees use an <strong>Enterprise Managed User (EMU)</strong> GitHub account — typically your
+        <code class="inline">alias_microsoft</code> username. Authenticate the CLI with it:
+      </p>
+      <pre><code>gh auth login</code></pre>
+      <p>Answer the interactive prompts as follows:</p>
+      <ul class="clean">
+        <li>Where do you use GitHub? → <strong>GitHub.com</strong></li>
+        <li>Preferred protocol → <strong>HTTPS</strong></li>
+        <li>Authenticate Git with your GitHub credentials? → <strong>Yes</strong></li>
+        <li>How would you like to authenticate? → <strong>Login with a web browser</strong></li>
+      </ul>
+      <p>A browser window will open. <strong>Sign in with your Microsoft alias</strong> (the EMU account you use for <a href="https://github.com/microsoft" target="_blank" rel="noopener">github.com/microsoft</a>), not your personal GitHub.</p>
+      <p>Confirm you are logged in as the right user:</p>
+      <pre><code>gh auth status</code></pre>
+      <div class="callout warn">
+        <strong>Already logged in as a personal account?</strong> Add the EMU account alongside it:
+        <pre style="margin-top:8px"><code>gh auth login --hostname github.com</code></pre>
+        Then switch with <code class="inline">gh auth switch</code>.
+      </div>
+    </section>
+
+    <!-- 5. GitHub Copilot CLI -->
+    <section class="step" id="gh-copilot">
+      <div class="step-head"><span class="step-num">5</span><h2>GitHub Copilot CLI</h2></div>
+      <p>
+        Install the standalone <a href="https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli" target="_blank" rel="noopener">GitHub Copilot CLI</a> —
+        an agentic coding assistant that runs directly in your terminal. We'll use it during the workshop to run
+        <strong>Ralph loops</strong> (long-running, autonomous agent loops that iterate on a task without manual prompting).
+      </p>
+      <pre><code>winget install --id GitHub.Copilot --source winget</code></pre>
+      <p>Close and reopen your terminal, then verify and sign in:</p>
+      <pre><code>copilot --version
+copilot</code></pre>
+      <p>
+        On first launch, Copilot CLI will prompt you to authenticate. Use the same
+        <strong>EMU / Microsoft alias account</strong> you signed in with for <code class="inline">gh</code>.
+      </p>
+    </section>
+
+    <!-- 6. Clone -->
+    <section class="step" id="clone">
+      <div class="step-head"><span class="step-num">6</span><h2>Clone the workshop repo</h2></div>
+      <p>Pick a folder you like and clone with the CLI (it uses your <code class="inline">gh</code> credentials, no extra setup needed):</p>
+      <pre><code>gh repo clone tezansahu/microsoft-idc-interns-agentic-engineering-workshop-2026
+cd microsoft-idc-interns-agentic-engineering-workshop-2026</code></pre>
+      <p>Open it in VS Code:</p>
+      <pre><code>code .</code></pre>
+    </section>
+
+    <!-- 7. Backend -->
+    <section class="step" id="backend">
+      <div class="step-head"><span class="step-num">7</span><h2>Run the backend <span class="tag">Python 3.10+</span></h2></div>
+      <p>Make sure you have <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 3.10+</a> installed (<code class="inline">python --version</code>). Then, from the repo root:</p>
+      <pre><code>cd backend
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m uvicorn app.main:app --port 8000</code></pre>
+      <p>API runs at <a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a> · Interactive docs at <a href="http://localhost:8000/docs" target="_blank" rel="noopener">/docs</a>.</p>
+      <div class="callout warn">
+        <strong>Activation blocked?</strong> If PowerShell refuses to run <code class="inline">Activate.ps1</code>, allow local scripts for the current user once:
+        <pre style="margin-top:8px"><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre>
+      </div>
+    </section>
+
+    <!-- 8. Frontend -->
+    <section class="step" id="frontend">
+      <div class="step-head"><span class="step-num">8</span><h2>Run the frontend <span class="tag">Node.js 20+</span></h2></div>
+      <p>Install <a href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js 20 or newer</a> (<code class="inline">node --version</code>). Then, in a <strong>new terminal</strong> (leave the backend running):</p>
+      <pre><code>cd frontend
+npm install
+npm run dev</code></pre>
+      <p>The app runs at <a href="http://localhost:5173" target="_blank" rel="noopener">http://localhost:5173</a>.</p>
+    </section>
+
+    <!-- 9. Seed -->
+    <section class="step" id="seed">
+      <div class="step-head"><span class="step-num">9</span><h2>Seed sample data</h2></div>
+      <p>The dashboard charts only look meaningful once there is data. Populate the store with a few weeks of sample entries:</p>
+      <pre><code>cd backend
+.venv\Scripts\Activate.ps1
+python seed.py</code></pre>
+      <p>Refresh the frontend — you should see the timeline chart and calendar heatmap come alive.</p>
+    </section>
+
+    <!-- 10. Verify -->
+    <section class="step" id="verify">
+      <div class="step-head"><span class="step-num">10</span><h2>Verify everything works</h2></div>
+      <ul class="clean">
+        <li>✅ <code class="inline">code --version</code> works and Copilot Chat opens in VS Code</li>
+        <li>✅ <code class="inline">$PSVersionTable.PSVersion</code> shows Major ≥ 7</li>
+        <li>✅ <code class="inline">gh auth status</code> shows your EMU account on github.com</li>
+        <li>✅ <code class="inline">copilot --version</code> prints a version and you can launch <code class="inline">copilot</code></li>
+        <li>✅ Backend responds at <a href="http://localhost:8000/docs" target="_blank" rel="noopener">localhost:8000/docs</a></li>
+        <li>✅ Frontend loads at <a href="http://localhost:5173" target="_blank" rel="noopener">localhost:5173</a> with charts populated</li>
+      </ul>
+      <div class="callout ok">
+        <strong>You're ready.</strong> Head back to the repo and open <code class="inline">briefs/</code> to see what you'll be building during the workshop.
+      </div>
+    </section>
+
+    <footer>
+      Made for the <em>From Vibe Coding to Agentic Engineering</em> workshop ·
+      <a href="https://github.com/tezansahu/microsoft-idc-interns-agentic-engineering-workshop-2026" target="_blank" rel="noopener">View repo on GitHub</a>
+    </footer>
+  </main>
+
+  <script>
+    // Add copy buttons to every <pre><code> block.
+    document.querySelectorAll('pre > code').forEach((code) => {
+      const pre = code.parentElement;
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.type = 'button';
+      btn.textContent = 'Copy';
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(code.innerText);
+          btn.textContent = 'Copied';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+        } catch {
+          btn.textContent = 'Press Ctrl+C';
+        }
+      });
+      pre.appendChild(btn);
+    });
+  </script>
+</body>
+</html>
