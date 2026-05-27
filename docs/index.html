@@ -171,6 +171,86 @@
       margin-left: 8px; vertical-align: middle;
     }
 
+    /* Hero top row: eyebrow + repo link */
+    .hero-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .repo-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px;
+      background: var(--panel);
+      text-decoration: none;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .repo-link:hover { color: var(--text); border-color: var(--brand); text-decoration: none; }
+    .repo-link svg { width: 14px; height: 14px; }
+
+    /* Sticky scroll button */
+    .scroll-fab {
+      position: fixed; right: 22px; bottom: 22px; z-index: 50;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white; border: none; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(124,156,255,0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .scroll-fab:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(124,156,255,0.55); }
+    .scroll-fab:active { transform: translateY(0); }
+    .scroll-fab svg { width: 20px; height: 20px; transition: transform 0.25s ease; }
+    .scroll-fab[data-dir="up"] svg { transform: rotate(180deg); }
+
+    /* OS pill switcher */
+    .os-switch {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+    .os-switch .label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+      margin-right: 4px;
+    }
+    .os-pills {
+      display: inline-flex;
+      padding: 4px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .os-pill {
+      appearance: none;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font: inherit; font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .os-pill:hover { color: var(--text); }
+    .os-pill[aria-pressed="true"] {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      box-shadow: 0 3px 10px rgba(124,156,255,0.35);
+    }
+    .os-pill svg { width: 14px; height: 14px; }
+
+    /* OS-conditional blocks: hide everything that doesn't match the active OS. */
+    body[data-os="windows"] .os-only:not(.os-windows) { display: none; }
+    body[data-os="macos"]   .os-only:not(.os-macos)   { display: none; }
+    body[data-os="linux"]   .os-only:not(.os-linux)   { display: none; }
+
+    .os-tag-windows, .os-tag-macos, .os-tag-linux { display: none; }
+    body[data-os="windows"] .os-tag-windows { display: inline-block; }
+    body[data-os="macos"]   .os-tag-macos   { display: inline-block; }
+    body[data-os="linux"]   .os-tag-linux   { display: inline-block; }
+
     footer {
       margin-top: 56px; text-align: center; color: var(--muted); font-size: 13px;
     }
@@ -183,22 +263,46 @@
     }
   </style>
 </head>
-<body>
+<body data-os="windows">
   <div class="bg-grad"></div>
 
   <main class="container">
     <header class="hero">
-      <span class="eyebrow">Workshop · 2026</span>
+      <div class="hero-top">
+        <span class="eyebrow">Microsoft IDC Interns · Agentic Engineering Workshop · 2026</span>
+        <a class="repo-link" href="https://github.com/tezansahu/microsoft-idc-interns-agentic-engineering-workshop-2026" target="_blank" rel="noopener" aria-label="View repository on GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.07.78 2.15v3.19c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          View repo
+        </a>
+      </div>
       <h1>Getting Started</h1>
       <p class="lede">
         Set up your machine for the <strong>From Vibe Coding to Agentic Engineering</strong> workshop.
         Follow the steps below in order — should take ~15 minutes.
       </p>
 
+      <div class="os-switch" role="group" aria-label="Choose your operating system">
+        <span class="label">Your OS</span>
+        <div class="os-pills">
+          <button class="os-pill" type="button" data-os-target="windows" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 11 4.3v7.2H3V5.5Zm0 7.5h8v7.2L3 18.5V13Zm9-8.8L21 3v8.5h-9V4.2Zm0 8.8h9V21l-9-1.2V13Z"/></svg>
+            Windows
+          </button>
+          <button class="os-pill" type="button" data-os-target="macos" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.6.9s-1.9-.9-3.1-.9c-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.6-.8 3.1-.8s1.8.8 3.1.7c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.6-1-2.6-3.9ZM14 5.1c.6-.8 1.1-1.9 1-3-1 .1-2.1.7-2.8 1.5-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.4Z"/></svg>
+            macOS
+          </button>
+          <button class="os-pill" type="button" data-os-target="linux" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c-2.5 0-4 2-4 4.5 0 1.4.4 2.3.9 3.2.4.7.7 1.4.7 2.4 0 1.6-1 2.7-1.9 3.9-1 1.3-2 2.7-2 4.5 0 1.6 1.2 2.5 3 2.5 1.1 0 1.7-.4 2.3-.8.4-.3.7-.5 1-.5s.6.2 1 .5c.6.4 1.2.8 2.3.8 1.8 0 3-.9 3-2.5 0-1.8-1-3.2-2-4.5-.9-1.2-1.9-2.3-1.9-3.9 0-1 .3-1.7.7-2.4.5-.9.9-1.8.9-3.2C16 4 14.5 2 12 2Zm-1.2 4c.4 0 .7.5.7 1.1 0 .3-.1.5-.2.7-.1-.2-.3-.3-.5-.3s-.4.1-.5.3c-.1-.2-.2-.4-.2-.7 0-.6.3-1.1.7-1.1Zm2.4 0c.4 0 .7.5.7 1.1 0 .3-.1.5-.2.7-.1-.2-.3-.3-.5-.3s-.4.1-.5.3c-.1-.2-.2-.4-.2-.7 0-.6.3-1.1.7-1.1Z"/></svg>
+            Linux
+          </button>
+        </div>
+      </div>
+
       <nav class="toc" aria-label="Table of contents">
         <ol>
           <li><a href="#vscode">VS Code &amp; GitHub Copilot</a></li>
-          <li><a href="#powershell">PowerShell 7+</a></li>
+          <li><a href="#shell">Shell setup</a></li>
           <li><a href="#gh-cli">GitHub CLI</a></li>
           <li><a href="#gh-auth">Sign in with your EMU account</a></li>
           <li><a href="#gh-copilot">GitHub Copilot CLI</a></li>
@@ -228,16 +332,45 @@
 code --install-extension GitHub.copilot-chat</code></pre>
     </section>
 
-    <!-- 2. PowerShell -->
-    <section class="step" id="powershell">
-      <div class="step-head"><span class="step-num">2</span><h2>PowerShell 7+ <span class="tag">Windows</span></h2></div>
-      <p>The workshop assumes <strong>PowerShell 7 or newer</strong> (not the old Windows PowerShell 5.1 that ships with Windows). Check your version:</p>
-      <pre><code>$PSVersionTable.PSVersion</code></pre>
-      <p>If the <code class="inline">Major</code> version is below 7, install it via <a href="https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows" target="_blank" rel="noopener">winget</a>:</p>
-      <pre><code>winget install --id Microsoft.PowerShell --source winget</code></pre>
-      <div class="callout ok">
-        <strong>Tip:</strong> Set PowerShell 7 (<code class="inline">pwsh</code>) as the default terminal in VS Code:
-        open the Command Palette (<code class="inline">Ctrl+Shift+P</code>) → <em>Terminal: Select Default Profile</em> → <em>PowerShell</em>.
+    <!-- 2. Shell setup -->
+    <section class="step" id="shell">
+      <div class="step-head">
+        <span class="step-num">2</span>
+        <h2>Shell setup
+          <span class="tag os-tag-windows">PowerShell 7+</span>
+          <span class="tag os-tag-macos">zsh / Homebrew</span>
+          <span class="tag os-tag-linux">bash / package manager</span>
+        </h2>
+      </div>
+
+      <div class="os-only os-windows">
+        <p>The workshop assumes <strong>PowerShell 7 or newer</strong> (not the old Windows PowerShell 5.1 that ships with Windows). Check your version:</p>
+        <pre><code>$PSVersionTable.PSVersion</code></pre>
+        <p>If the <code class="inline">Major</code> version is below 7, install it via <a href="https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows" target="_blank" rel="noopener">winget</a>:</p>
+        <pre><code>winget install --id Microsoft.PowerShell --source winget</code></pre>
+        <div class="callout ok">
+          <strong>Tip:</strong> Set PowerShell 7 (<code class="inline">pwsh</code>) as the default terminal in VS Code:
+          open the Command Palette (<code class="inline">Ctrl+Shift+P</code>) → <em>Terminal: Select Default Profile</em> → <em>PowerShell</em>.
+        </div>
+      </div>
+
+      <div class="os-only os-macos">
+        <p>macOS already ships with a modern shell (<code class="inline">zsh</code>). The only thing you need is <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> — we'll use it to install everything else.</p>
+        <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+        <p>After it finishes, follow the on-screen instructions to add <code class="inline">brew</code> to your <code class="inline">PATH</code>, then verify:</p>
+        <pre><code>brew --version</code></pre>
+      </div>
+
+      <div class="os-only os-linux">
+        <p>Most Linux distros ship with <code class="inline">bash</code> and a package manager — nothing to install. Just make sure <code class="inline">curl</code> and <code class="inline">git</code> are available:</p>
+        <pre><code># Debian / Ubuntu
+sudo apt update &amp;&amp; sudo apt install -y curl git
+
+# Fedora / RHEL
+sudo dnf install -y curl git
+
+# Arch
+sudo pacman -S --needed curl git</code></pre>
       </div>
     </section>
 
@@ -245,7 +378,33 @@ code --install-extension GitHub.copilot-chat</code></pre>
     <section class="step" id="gh-cli">
       <div class="step-head"><span class="step-num">3</span><h2>GitHub CLI</h2></div>
       <p>Install the <a href="https://cli.github.com/" target="_blank" rel="noopener">GitHub CLI</a>:</p>
-      <pre><code>winget install --id GitHub.cli --source winget</code></pre>
+
+      <div class="os-only os-windows">
+        <pre><code>winget install --id GitHub.cli --source winget</code></pre>
+      </div>
+      <div class="os-only os-macos">
+        <pre><code>brew install gh</code></pre>
+      </div>
+      <div class="os-only os-linux">
+        <pre><code># Debian / Ubuntu
+(type -p wget &gt;/dev/null || (sudo apt update &amp;&amp; sudo apt install wget -y)) \
+  &amp;&amp; sudo mkdir -p -m 755 /etc/apt/keyrings \
+  &amp;&amp; wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+     | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg &gt; /dev/null \
+  &amp;&amp; sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+  &amp;&amp; echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+     | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null \
+  &amp;&amp; sudo apt update \
+  &amp;&amp; sudo apt install gh -y
+
+# Fedora / RHEL
+sudo dnf install gh
+
+# Arch
+sudo pacman -S github-cli</code></pre>
+        <p class="muted" style="font-size:13.5px">Full install matrix: <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md" target="_blank" rel="noopener">cli/cli install_linux.md</a>.</p>
+      </div>
+
       <p>Close and reopen your terminal, then verify:</p>
       <pre><code>gh --version</code></pre>
     </section>
@@ -283,8 +442,26 @@ code --install-extension GitHub.copilot-chat</code></pre>
         an agentic coding assistant that runs directly in your terminal. We'll use it during the workshop to run
         <strong>Ralph loops</strong> (long-running, autonomous agent loops that iterate on a task without manual prompting).
       </p>
-      <pre><code>winget install --id GitHub.Copilot --source winget</code></pre>
-      <p>Close and reopen your terminal, then verify and sign in:</p>
+
+      <div class="os-only os-windows">
+        <pre><code>winget install --id GitHub.Copilot --source winget</code></pre>
+      </div>
+      <div class="os-only os-macos">
+        <p>Copilot CLI is distributed as an npm package and requires <strong>Node.js 22+</strong>. Install Node via Homebrew first if you don't have it:</p>
+        <pre><code>brew install node
+npm install -g @github/copilot</code></pre>
+      </div>
+      <div class="os-only os-linux">
+        <p>Copilot CLI is distributed as an npm package and requires <strong>Node.js 22+</strong>. Install Node first if you don't have it:</p>
+        <pre><code># Install Node 22 (NodeSource — Debian / Ubuntu / RHEL)
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Then install Copilot CLI
+sudo npm install -g @github/copilot</code></pre>
+      </div>
+
+      <p>Verify and sign in:</p>
       <pre><code>copilot --version
 copilot</code></pre>
       <p>
@@ -306,23 +483,68 @@ cd microsoft-idc-interns-agentic-engineering-workshop-2026</code></pre>
     <!-- 7. Backend -->
     <section class="step" id="backend">
       <div class="step-head"><span class="step-num">7</span><h2>Run the backend <span class="tag">Python 3.10+</span></h2></div>
-      <p>Make sure you have <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 3.10+</a> installed (<code class="inline">python --version</code>). Then, from the repo root:</p>
-      <pre><code>cd backend
+      <p>Make sure you have <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 3.10+</a> installed.</p>
+
+      <div class="os-only os-windows">
+        <p>Check with <code class="inline">python --version</code>. Then, from the repo root:</p>
+        <pre><code>cd backend
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python -m uvicorn app.main:app --port 8000</code></pre>
-      <p>API runs at <a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a> · Interactive docs at <a href="http://localhost:8000/docs" target="_blank" rel="noopener">/docs</a>.</p>
-      <div class="callout warn">
-        <strong>Activation blocked?</strong> If PowerShell refuses to run <code class="inline">Activate.ps1</code>, allow local scripts for the current user once:
-        <pre style="margin-top:8px"><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre>
+        <div class="callout warn">
+          <strong>Activation blocked?</strong> If PowerShell refuses to run <code class="inline">Activate.ps1</code>, allow local scripts for the current user once:
+          <pre style="margin-top:8px"><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre>
+        </div>
       </div>
+
+      <div class="os-only os-macos">
+        <p>macOS ships with an older Python — install a modern one via Homebrew if needed:</p>
+        <pre><code>brew install python@3.12</code></pre>
+        <p>Then, from the repo root:</p>
+        <pre><code>cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m uvicorn app.main:app --port 8000</code></pre>
+      </div>
+
+      <div class="os-only os-linux">
+        <p>Most distros include Python 3.10+. Install the <code class="inline">venv</code> module if you don't have it:</p>
+        <pre><code># Debian / Ubuntu
+sudo apt install -y python3 python3-venv python3-pip
+
+# Fedora / RHEL
+sudo dnf install -y python3 python3-pip</code></pre>
+        <p>Then, from the repo root:</p>
+        <pre><code>cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m uvicorn app.main:app --port 8000</code></pre>
+      </div>
+
+      <p>API runs at <a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a> · Interactive docs at <a href="http://localhost:8000/docs" target="_blank" rel="noopener">/docs</a>.</p>
     </section>
 
     <!-- 8. Frontend -->
     <section class="step" id="frontend">
       <div class="step-head"><span class="step-num">8</span><h2>Run the frontend <span class="tag">Node.js 20+</span></h2></div>
-      <p>Install <a href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js 20 or newer</a> (<code class="inline">node --version</code>). Then, in a <strong>new terminal</strong> (leave the backend running):</p>
+      <p>You'll need <a href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js 20 or newer</a> (<code class="inline">node --version</code> to check). If you installed Copilot CLI in step 5 you already have Node 22+.</p>
+
+      <div class="os-only os-windows">
+        <p>If Node is missing:</p>
+        <pre><code>winget install --id OpenJS.NodeJS.LTS --source winget</code></pre>
+      </div>
+      <div class="os-only os-macos">
+        <p>If Node is missing:</p>
+        <pre><code>brew install node</code></pre>
+      </div>
+      <div class="os-only os-linux">
+        <p>If Node is missing, install Node 22 from NodeSource (see step 5).</p>
+      </div>
+
+      <p>Then, in a <strong>new terminal</strong> (leave the backend running):</p>
       <pre><code>cd frontend
 npm install
 npm run dev</code></pre>
@@ -333,9 +555,23 @@ npm run dev</code></pre>
     <section class="step" id="seed">
       <div class="step-head"><span class="step-num">9</span><h2>Seed sample data</h2></div>
       <p>The dashboard charts only look meaningful once there is data. Populate the store with a few weeks of sample entries:</p>
-      <pre><code>cd backend
+
+      <div class="os-only os-windows">
+        <pre><code>cd backend
 .venv\Scripts\Activate.ps1
 python seed.py</code></pre>
+      </div>
+      <div class="os-only os-macos">
+        <pre><code>cd backend
+source .venv/bin/activate
+python seed.py</code></pre>
+      </div>
+      <div class="os-only os-linux">
+        <pre><code>cd backend
+source .venv/bin/activate
+python seed.py</code></pre>
+      </div>
+
       <p>Refresh the frontend — you should see the timeline chart and calendar heatmap come alive.</p>
     </section>
 
@@ -344,14 +580,16 @@ python seed.py</code></pre>
       <div class="step-head"><span class="step-num">10</span><h2>Verify everything works</h2></div>
       <ul class="clean">
         <li>✅ <code class="inline">code --version</code> works and Copilot Chat opens in VS Code</li>
-        <li>✅ <code class="inline">$PSVersionTable.PSVersion</code> shows Major ≥ 7</li>
+        <li class="os-only os-windows">✅ <code class="inline">$PSVersionTable.PSVersion</code> shows Major ≥ 7</li>
+        <li class="os-only os-macos">✅ <code class="inline">brew --version</code> prints a version</li>
+        <li class="os-only os-linux">✅ <code class="inline">git --version</code> and <code class="inline">curl --version</code> both work</li>
         <li>✅ <code class="inline">gh auth status</code> shows your EMU account on github.com</li>
         <li>✅ <code class="inline">copilot --version</code> prints a version and you can launch <code class="inline">copilot</code></li>
         <li>✅ Backend responds at <a href="http://localhost:8000/docs" target="_blank" rel="noopener">localhost:8000/docs</a></li>
         <li>✅ Frontend loads at <a href="http://localhost:5173" target="_blank" rel="noopener">localhost:5173</a> with charts populated</li>
       </ul>
       <div class="callout ok">
-        <strong>You're ready.</strong> Head back to the repo and open <code class="inline">briefs/</code> to see what you'll be building during the workshop.
+        <strong>You're ready.</strong> Head back to the <a href="https://github.com/tezansahu/microsoft-idc-interns-agentic-engineering-workshop-2026" target="_blank" rel="noopener">repo</a> and open <code class="inline">briefs/</code> to see what you'll be building during the workshop.
       </div>
     </section>
 
@@ -361,8 +599,41 @@ python seed.py</code></pre>
     </footer>
   </main>
 
+  <button class="scroll-fab" id="scrollFab" type="button" data-dir="down" aria-label="Scroll to bottom" title="Scroll to bottom">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </button>
+
   <script>
-    // Add copy buttons to every <pre><code> block.
+    // --- OS pill switcher ------------------------------------------------
+    const STORAGE_KEY = 'pulse-workshop-os';
+    const validOS = ['windows', 'macos', 'linux'];
+
+    function detectDefaultOS() {
+      const ua = navigator.userAgent.toLowerCase();
+      if (ua.includes('mac')) return 'macos';
+      if (ua.includes('linux') && !ua.includes('android')) return 'linux';
+      return 'windows';
+    }
+
+    function setOS(os) {
+      if (!validOS.includes(os)) os = 'windows';
+      document.body.setAttribute('data-os', os);
+      document.querySelectorAll('.os-pill').forEach((btn) => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.osTarget === os));
+      });
+      try { localStorage.setItem(STORAGE_KEY, os); } catch {}
+    }
+
+    const saved = (() => { try { return localStorage.getItem(STORAGE_KEY); } catch { return null; } })();
+    setOS(saved || detectDefaultOS());
+
+    document.querySelectorAll('.os-pill').forEach((btn) => {
+      btn.addEventListener('click', () => setOS(btn.dataset.osTarget));
+    });
+
+    // --- Copy buttons on every <pre><code> block -------------------------
     document.querySelectorAll('pre > code').forEach((code) => {
       const pre = code.parentElement;
       const btn = document.createElement('button');
@@ -381,6 +652,25 @@ python seed.py</code></pre>
       });
       pre.appendChild(btn);
     });
+
+    // --- Scroll-to-top/bottom floating button ---------------------------
+    const fab = document.getElementById('scrollFab');
+    function updateFab() {
+      const scrolled = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      // Past the halfway point → offer "back to top". Otherwise → "jump to bottom".
+      const dir = scrolled > max / 2 ? 'up' : 'down';
+      fab.dataset.dir = dir;
+      const label = dir === 'up' ? 'Scroll to top' : 'Scroll to bottom';
+      fab.setAttribute('aria-label', label);
+      fab.setAttribute('title', label);
+    }
+    fab.addEventListener('click', () => {
+      const target = fab.dataset.dir === 'up' ? 0 : document.documentElement.scrollHeight;
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', updateFab, { passive: true });
+    updateFab();
   </script>
 </body>
 </html>
