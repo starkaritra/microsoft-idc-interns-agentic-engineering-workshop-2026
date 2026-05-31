@@ -1,185 +1,134 @@
 # Smart Nudges — Demo Script
 
-A step-by-step run-through that exercises every shipped feature. Total time: ~8 minutes. Reset between sections by deleting `backend/.data/`.
+Browser-only walkthrough. No terminal juggling during the demo. Practice once end-to-end before going live.
 
 ---
 
-## 0. One-time setup (before the demo)
+## Pre-demo checklist
 
-```powershell
-# Backend
-cd microsoft-idc-interns-agentic-engineering-workshop-2026\backend
-.venv\Scripts\Activate.ps1     # or use the shared Skillup\.venv
-pip install -r requirements.txt
-
-# Frontend (separate terminal)
-cd microsoft-idc-interns-agentic-engineering-workshop-2026\frontend
-npm install
-```
-
-Open three terminals: **backend**, **frontend**, **scratch** (for `Invoke-RestMethod` calls).
+- [ ] Backend running: `python seed.py` then `python -m uvicorn app.main:app --port 8000`
+- [ ] Frontend running: `npm run dev`
+- [ ] Three browser tabs open:
+  - **Tab 1:** http://localhost:5173 (the app — Dashboard)
+  - **Tab 2:** http://localhost:5173/settings (Settings page)
+  - **Tab 3:** http://localhost:8000/docs (FastAPI explorer)
+- [ ] Browser zoom 110–125% so the audience can read.
+- [ ] Speaker notes (`pitch.md`) open in another window.
 
 ---
 
-## 1. Cold start — the onboarding shield (90 sec)
+## Act 1 — The Problem
 
-**What this proves:** new users get zero nudges. No spam on day one.
+**Tab 1: Dashboard.** Don't touch anything yet.
 
-```powershell
-# In backend terminal:
-Remove-Item -Recurse -Force .data -ErrorAction SilentlyContinue
-python -m uvicorn app.main:app --port 8000
+Say:
+> "Pulse loses 7 of 10 users between Day 3 and Day 7. The obvious fix — 'send more reminders' — is also the fastest way to get uninstalled. I built a nudge system that earns attention instead of demanding it."
 
-# In frontend terminal:
-npm run dev
-```
+Point at:
+- The nudge card at the top — ≤ 1 visible by design.
+- The Retention panel further down — the *honest* numbers we can defend in a single-user app.
 
-1. Open http://localhost:5173 → Dashboard. No nudge card. No retention numbers worth showing. ✅
-2. In scratch terminal:
+> "Five behavioral rules, four lightweight algorithms, and one hard cap: never more than one nudge at a time."
+
+---
+
+## Act 2 — The Trust Layer
+
+**Switch to Tab 2 (Settings).**
+
+> "Before I show what the system does, let me show what the *user* can do."
+
+1. Point at the **category toggles** — six independent on/off switches.
+2. Point at **quiet hours** and **reminder time override**.
+3. Hit **"Disable all nudges"** → switch to Tab 1, refresh → card gone.
+4. Switch back to Tab 2 → re-enable → Tab 1 refresh → card returns.
+
+Say:
+> "One tap silences the entire system. Every default in this build optimizes for *not getting turned off* — because a nudge engine the user disabled is worth zero."
+
+---
+
+## Act 3 — The Five Rules and the Math Behind Them
+
+Pull up `pitch.md` Slide 3 (the algorithm table) on screen as a visual aid if you can.
+
+**Stay on Tab 1.** Walk through what's visible right now:
+
+1. Read the current nudge card's title and body out loud. Identify its rule.
+2. For each of the five rules, give a one-sentence pitch — even if it's not currently visible:
+
+| Rule | What it does | The algorithm |
+|---|---|---|
+| `reminder` | Daily check-in | **von Mises KDE** learns your circadian logging mode (handles 23→0 wrap-around) |
+| `missing_entry` | Gentle prompt after 24h silence | Only after entry #3 (onboarding shield) |
+| `first_insight` | One-shot celebration at entry #7 | The "give back" moment |
+| `streak` | 3 / 7 / 30-day celebrations | **Never** loss-framed — enforced by tests, not vibes |
+| `pattern` | "You score +0.8 mood on `exercise` days, p<0.05" | **Permutation test**, 1000 shuffles |
+
+3. **The skip-predictor:**
+> "There's a fifth algorithm that decides whether to fire at all. A logistic regression predicts P(you'll log anyway today). If it's high, the reminder stays silent. That kills the #1 spam vector."
+
+4. **The bandit:**
+> "When multiple rules compete, a Thompson-sampled bandit picks based on *your* engagement history. It self-tunes in 20–30 emissions. No A/B framework needed."
+
+---
+
+## Act 4 — Show, Don't Tell
+
+Live interaction.
+
+1. **Tab 1:** click **Snooze** on the visible nudge → card disappears.
+2. Refresh → still gone. Say: "Snoozed until 9am tomorrow."
+3. **Tab 2 (Settings):** toggle off the snoozed rule's category, save → switch to Tab 1, refresh.
+   - Either a *different* rule's nudge appears (great — proves rotation) or none (also fine — "the system would rather show nothing than show noise").
+4. Re-enable in Tab 2.
+
+5. **Scroll down on Tab 1 to the Retention panel.** Walk through:
+   - Last 7d active days
+   - Last 30d active days
+   - Current streak
+   - Best streak
+   - Median entries per active week
+
+Say:
+> "Priya asked for D1/D3/D7 retention. In a single-user JSON-backed app, the only defensible answer is local. So we built it. No fake dashboard, no analytics theater."
+
+---
+
+## Act 5 — Under the Hood *(technical audiences only)*
+
+**Switch to Tab 3 (FastAPI /docs).**
+
+> "Every panel you saw is a thin view over these endpoints. No hidden state."
+
+Live-call two endpoints — pick the highest-impact two, don't run all of them:
+
+1. **`GET /api/nudges`** → *Try it out* → *Execute*. Show the JSON: `id`, `rule_id`, `priority`, `emitted_at`.
+2. **`GET /api/stats/retention`** → *Try it out* → *Execute*. Same numbers as the Retention panel — proves the UI isn't lying.
+
+---
+
+## Act 6 — Honest Trade-offs
+
+Back to your speaker notes (`pitch.md` Slide 5).
+
+Say:
+> "Three decisions I want to flag honestly:
+> 1. The engagement signal — 'entry within 30 min of nudge' — conflates organic logging with nudge-driven logging.
+> 2. Pattern nudges are on by default, gated only by a permutation test. Cold-start risk is real.
+> 3. The skip-predictor is self-fulfilling — suppressing a reminder changes the label being learned.
+>
+> All of these are in `spec_and_future_scope.md`. The principle: a nudge engine the user disabled is worth zero — regardless of how clever its math is."
+
+---
+
+## The two rules that save you live
+
+1. **"If nothing fires, that's also the demo — the system would rather show nothing than show noise."** Memorize this. Skip and move on.
+2. **Never open a terminal during the demo.** If state is wrong, reset it *before* you go live:
    ```powershell
-   Invoke-RestMethod http://localhost:8000/api/nudges | ConvertTo-Json -Depth 5
+   cd backend
+   Remove-Item -Recurse -Force .data
+   python seed.py
+   python -m uvicorn app.main:app --port 8000
    ```
-   → `{ "nudges": [] }` ✅
-3. Log 2 entries via the **Log** page. Refresh dashboard. **Still no nudge** (onboarding gate is `< 3 entries`). ✅
-
-> **Talking point:** "The first thing this system does is *nothing*. Onboarding is the product, not a nudge surface."
-
----
-
-## 2. Seed data — the algorithms come alive (60 sec)
-
-```powershell
-# Backend terminal — stop uvicorn (Ctrl-C), then:
-python seed.py
-python -m uvicorn app.main:app --port 8000
-```
-
-Refresh dashboard.
-
-1. **Retention panel** now shows real numbers — last-7d / last-30d active days, current streak, best streak, median entries-per-active-week. ✅
-2. **Nudge card** appears (likely `first_insight` or `streak`, depending on seed).
-
-> **Talking point:** "Every number on this panel is computed locally from your own entries. No analytics pipeline, no `users` table — just honest math."
-
----
-
-## 3. The five rules in action (3 min)
-
-Use scratch terminal to inspect state directly between actions:
-
-```powershell
-function Show-State { Get-Content .data\nudge_state.json | ConvertFrom-Json | ConvertTo-Json -Depth 5 }
-function Show-Prefs { Invoke-RestMethod http://localhost:8000/api/preferences | ConvertTo-Json -Depth 5 }
-function Get-Nudges { Invoke-RestMethod http://localhost:8000/api/nudges | ConvertTo-Json -Depth 5 }
-```
-
-### 3a. Reminder (von Mises timing + skip-predictor)
-- Show that all entries cluster around a specific hour (`Show-Prefs` if reminder override is null).
-- Trigger `Get-Nudges` at that hour vs. far from it. Reminder appears only near typical logging time. ✅
-- **If you just logged**, the skip-predictor suppresses the reminder. ✅
-
-### 3b. Missing-entry
-- With ≥ 3 entries and last entry > 24h ago → `missing_entry` nudge fires.
-- Copy contains *no* loss-framing words ("missed", "broke", "lost"). Show by inspecting the response.
-
-### 3c. First-insight (one-shot)
-- After ~7 entries → fires once. State `one_shot_fired` array now contains `"first_insight"`. Subsequent calls never re-emit. ✅
-  ```powershell
-  Show-State
-  ```
-
-### 3d. Streak milestone (celebration-only)
-- 3, 7, or 30 consecutive days → celebration nudge.
-- Break a streak intentionally (skip a day in seed) → **no negative nudge fires**. The retention panel quietly shows `current_streak: 0`. ✅
-
-### 3e. Pattern nudge (permutation-test gated)
-- Pattern only fires when a tag has **n≥10 tagged days, p<0.05, |Δmood|≥0.5**. Most random data won't trigger it — that's the point.
-
-### 3f. Change-point reflection (opt-in, OFF by default)
-```powershell
-$body = @{
-  quiet_hours = @{ start = "21:00"; end = "09:00" }
-  reminder_time_override = $null
-  categories_enabled = @{ reminder=$true; missing_entry=$true; first_insight=$true; streak=$true; pattern=$true; change_point=$true }
-} | ConvertTo-Json
-Invoke-RestMethod -Method Put -Uri http://localhost:8000/api/preferences -Body $body -ContentType "application/json"
-```
-- After enabling, a planted mood dip in seed → reflection nudge with **curious** copy ("noticed a shift") not diagnostic ("you seem low"). ✅
-
----
-
-## 4. The bandit learns from you (90 sec)
-
-**What this proves:** the system self-tunes which nudge category *you* find useful.
-
-1. Show current `rule_stats` in `Show-State` — `{ shown, engaged }` per rule.
-2. Simulate engagement on one rule:
-   ```powershell
-   $rid = (Invoke-RestMethod http://localhost:8000/api/nudges).nudges[0].id
-   Invoke-RestMethod -Method Post -Uri "http://localhost:8000/api/nudges/$rid/engaged"
-   ```
-3. Repeat a few times for one rule, dismiss for another. `Show-State` reveals the divergence.
-4. Over subsequent calls, Thompson sampling shifts emissions toward the engaged rule. ✅
-
-> **Talking point:** "No A/B infrastructure. No backend training job. The bandit converges on what works *for this user* in 20–30 emissions."
-
----
-
-## 5. User control — the trust layer (60 sec)
-
-Navigate to **/settings** in the browser.
-
-1. Toggle off `pattern` → save → refresh dashboard → pattern nudge no longer surfaces. ✅
-2. Set `reminder_time_override` to a specific time → that overrides the von Mises algorithm. ✅
-3. Hit **"Disable all nudges"** (the trust escape hatch) → every category off in one click. ✅
-4. Try invalid quiet hours (start == end) → client-side error, no PUT fires. Server would 422 anyway. ✅
-
-In-card controls:
-5. Click **Snooze** on a card → state writes `snoozed_until` to next 09:00 → that rule won't surface until then. ✅
-6. Click **Dismiss** → 24h decay window starts for that rule. ✅
-
----
-
-## 6. Honest retention dashboard (30 sec)
-
-Scroll to the bottom of the dashboard:
-
-| Stat | Meaning |
-|---|---|
-| Last 7d active days | Days with ≥1 entry in last week |
-| Last 30d active days | Same, monthly |
-| Current streak | Consecutive days ending today/yesterday |
-| Best streak | All-time max consecutive run |
-| Median entries / active week | Last 30d, ignoring inactive weeks |
-
-> **Talking point:** "Priya asked for D1/D3/D7 retention numbers. In a single-user JSON-backed app, the *only* defensible answer is local. So we built the local answer. No fake dashboard."
-
----
-
-## 7. Test suite (60 sec, optional)
-
-```powershell
-# Backend
-cd backend
-pytest -q
-
-# Frontend
-cd ..\frontend
-npm test -- --run
-```
-
-Highlight in the output:
-- Banned-word copy assertions (e.g. *"missed"*, *"broke"*, *"depressed"*, *"low mood"*).
-- Seeded RNG tests for the bandit (deterministic convergence to higher-engagement arm).
-- Permutation-test FPR check (planted-null gives ≤ 7% false positives across 100 seeds).
-
----
-
-## Demo reset cheatsheet
-
-```powershell
-# Wipe state to demo "cold start" behavior again
-cd backend
-Remove-Item -Recurse -Force .data
-python seed.py     # if you want seeded data back
-```
