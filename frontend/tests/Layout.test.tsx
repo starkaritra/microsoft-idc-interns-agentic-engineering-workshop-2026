@@ -26,6 +26,19 @@ describe("Layout", () => {
     expect(screen.getByText("Dashboard")).toBeInTheDocument();
     expect(screen.getByText("Log Entry")).toBeInTheDocument();
     expect(screen.getByText("History")).toBeInTheDocument();
+    expect(screen.getByText("Settings")).toBeInTheDocument();
+  });
+
+  it("Settings link points to /settings", () => {
+    render(
+      <MemoryRouter>
+        <Layout>
+          <div>Test content</div>
+        </Layout>
+      </MemoryRouter>
+    );
+    const link = screen.getByRole("link", { name: /Settings/ });
+    expect(link).toHaveAttribute("href", "/settings");
   });
 
   it("renders children", () => {

@@ -5,6 +5,7 @@ const links = [
   { to: "/", label: "Dashboard", icon: "📊" },
   { to: "/log", label: "Log Entry", icon: "✏️" },
   { to: "/history", label: "History", icon: "📋" },
+  { to: "/settings", label: "Settings", icon: "⚙️" },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {

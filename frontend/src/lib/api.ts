@@ -3,6 +3,9 @@ import type {
   Entry,
   EntryCreate,
   HeatmapDay,
+  NudgesResponse,
+  Preferences,
+  RetentionStats,
   TagsResponse,
   WeeklyStat,
 } from "./types";
@@ -43,6 +46,24 @@ export const api = {
     daily: () => request<DailyStat[]>("/stats/daily"),
     weekly: () => request<WeeklyStat[]>("/stats/weekly"),
     heatmap: () => request<HeatmapDay[]>("/stats/heatmap"),
+    retention: () => request<RetentionStats>("/stats/retention"),
   },
   tags: () => request<TagsResponse>("/tags"),
+  nudges: {
+    list: () => request<NudgesResponse>("/nudges"),
+    engaged: (nudgeId: string) =>
+      request<void>(`/nudges/${nudgeId}/engaged`, { method: "POST" }),
+    dismiss: (ruleId: string) =>
+      request<void>(`/nudges/${ruleId}/dismiss`, { method: "POST" }),
+    snooze: (ruleId: string) =>
+      request<void>(`/nudges/${ruleId}/snooze`, { method: "POST" }),
+  },
+  preferences: {
+    get: () => request<Preferences>("/preferences"),
+    update: (prefs: Preferences) =>
+      request<Preferences>("/preferences", {
+        method: "PUT",
+        body: JSON.stringify(prefs),
+      }),
+  },
 };

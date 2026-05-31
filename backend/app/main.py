@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routes import entries, stats, tags
+from .routes import entries, nudges, preferences, stats, tags
 
 app = FastAPI(
     title="Pulse API",
@@ -21,6 +21,8 @@ app.add_middleware(
 app.include_router(entries.router, prefix="/api")
 app.include_router(stats.router, prefix="/api")
 app.include_router(tags.router, prefix="/api")
+app.include_router(nudges.router, prefix="/api")
+app.include_router(preferences.router, prefix="/api")
 
 
 @app.get("/")

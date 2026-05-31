@@ -4,6 +4,7 @@ import EnergySlider from "../components/EnergySlider";
 import MoodSelector from "../components/MoodSelector";
 import TagSelector from "../components/TagSelector";
 import { api } from "../lib/api";
+import { recordEntryCreated } from "../lib/nudgeTracking";
 
 export default function LogEntry() {
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ export default function LogEntry() {
         note: note.trim() || undefined,
         tags,
       });
+      // Correlate this entry with any nudge shown in the last 30 min.
+      // Fire-and-forget; tracker swallows its own errors.
+      void recordEntryCreated();
       setSuccess(true);
       setTimeout(() => navigate("/"), 1200);
     } finally {
