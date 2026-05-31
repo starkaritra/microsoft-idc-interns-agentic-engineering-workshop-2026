@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import CalendarHeatmap from "../components/CalendarHeatmap";
 import EntryCard from "../components/EntryCard";
+import NudgeStack from "../components/NudgeStack";
+import RetentionPanel from "../components/RetentionPanel";
 import TimelineChart from "../components/TimelineChart";
 import { api } from "../lib/api";
 import type { DailyStat, Entry, HeatmapDay } from "../lib/types";
@@ -52,6 +54,9 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Smart nudges — single card, inline, above all content */}
+      <NudgeStack />
+
       {/* Page header */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
@@ -102,6 +107,9 @@ export default function Dashboard() {
         <TimelineChart data={daily} title="Last 14 Days — Daily Averages" />
         <CalendarHeatmap data={heatmap} />
       </div>
+
+      {/* Honest local retention stats */}
+      <RetentionPanel />
 
       {/* Recent entries */}
       <div>

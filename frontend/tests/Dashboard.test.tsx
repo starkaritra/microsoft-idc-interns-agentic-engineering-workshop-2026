@@ -8,9 +8,22 @@ vi.mock("../src/lib/api", () => ({
     stats: {
       daily: vi.fn().mockResolvedValue([]),
       heatmap: vi.fn().mockResolvedValue([]),
+      retention: vi.fn().mockResolvedValue({
+        last_7d_active_days: 0,
+        last_30d_active_days: 0,
+        current_streak: 0,
+        best_streak: 0,
+        entries_per_active_week_median: 0,
+      }),
     },
     entries: {
       list: vi.fn().mockResolvedValue([]),
+    },
+    nudges: {
+      list: vi.fn().mockResolvedValue({ nudges: [] }),
+      engaged: vi.fn().mockResolvedValue(undefined),
+      dismiss: vi.fn().mockResolvedValue(undefined),
+      snooze: vi.fn().mockResolvedValue(undefined),
     },
   },
 }));

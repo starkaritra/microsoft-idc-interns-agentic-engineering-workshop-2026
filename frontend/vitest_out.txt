@@ -1,0 +1,235 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.5 [39m[90mC:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend[39m
+
+ [32mΓ£ô[39m tests/nudgeTracking.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+stderr | tests/RetentionPanel.test.tsx > RetentionPanel > renders nothing when API fails
+Warning: An update to RetentionPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at RetentionPanel (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/components/RetentionPanel.tsx:6:63)
+
+stderr | tests/Layout.test.tsx > Layout > renders the app name
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ [32mΓ£ô[39m tests/RetentionPanel.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 144[2mms[22m[39m
+stderr | tests/NudgeCard.test.tsx > NudgeCard > shows title, body, and CTA link
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | tests/NudgeStack.test.tsx > NudgeStack > renders nothing when API returns []
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | tests/LogEntry.test.tsx > LogEntry > renders the Log Entry heading
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ [32mΓ£ô[39m tests/Layout.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 329[2mms[22m[39m
+stderr | tests/Settings.test.tsx > Settings page > renders preferences from API
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | tests/History.test.tsx > History > shows loading state initially
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Warning: An update to History inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at History (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/History.tsx:7:67)
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+stderr | tests/History.test.tsx > History > shows loading state initially
+Warning: An update to History inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at History (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/History.tsx:7:67)
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+ [32mΓ£ô[39m tests/TagSelector.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 332[2mms[22m[39m
+ [32mΓ£ô[39m tests/NudgeCard.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 553[2mms[22m[39m
+ [32mΓ£ô[39m tests/MoodSelector.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 287[2mms[22m[39m
+ [32mΓ£ô[39m tests/NudgeStack.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 528[2mms[22m[39m
+ [32mΓ£ô[39m tests/Settings.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 431[2mms[22m[39m
+     [33m[2mΓ£ô[22m[39m PUTs preferences on save [33m 302[2mms[22m[39m
+ [32mΓ£ô[39m tests/EnergySlider.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 340[2mms[22m[39m
+ [32mΓ£ô[39m tests/LogEntry.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 640[2mms[22m[39m
+ [32mΓ£ô[39m tests/History.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 504[2mms[22m[39m
+ [32mΓ£ô[39m tests/EntryCard.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 297[2mms[22m[39m
+ [32mΓ£ô[39m tests/PreferencesForm.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 872[2mms[22m[39m
+     [33m[2mΓ£ô[22m[39m saves merged payload and shows confirmation [33m 361[2mms[22m[39m
+stderr | tests/Dashboard.test.tsx > Dashboard > shows loading state initially
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | tests/Dashboard.test.tsx > Dashboard > shows loading state initially
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+stderr | tests/Dashboard.test.tsx > Dashboard > shows loading state initially
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+stderr | tests/App.test.tsx > App routing > renders Dashboard on /
+ΓÜá∩╕Å React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+ΓÜá∩╕Å React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ [32mΓ£ô[39m tests/Dashboard.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 77[2mms[22m[39m
+stderr | tests/App.test.tsx > App routing > renders navigation in layout
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at RenderedRoute (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:539:7)
+    at Routes (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1273:7)
+    at main
+    at div
+    at Layout (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/components/Layout.tsx:10:19)
+    at App
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at RenderedRoute (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:539:7)
+    at Routes (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1273:7)
+    at main
+    at div
+    at Layout (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/components/Layout.tsx:10:19)
+    at App
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at RenderedRoute (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:539:7)
+    at Routes (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1273:7)
+    at main
+    at div
+    at Layout (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/components/Layout.tsx:10:19)
+    at App
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+stderr | tests/App.test.tsx > App routing > renders navigation in layout
+Warning: An update to Dashboard inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at Dashboard (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/pages/Dashboard.tsx:12:63)
+    at RenderedRoute (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:539:7)
+    at Routes (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1273:7)
+    at main
+    at div
+    at Layout (C:/Users/t-aritradas/OneDrive - Microsoft/Documents/Skillup/microsoft-idc-interns-agentic-engineering-workshop-2026/frontend/src/components/Layout.tsx:10:19)
+    at App
+    at Router (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\Users\t-aritradas\OneDrive - Microsoft\Documents\Skillup\microsoft-idc-interns-agentic-engineering-workshop-2026\frontend\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+ [32mΓ£ô[39m tests/App.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 150[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[32m74 passed[39m[22m[90m (74)[39m
+[2m   Start at [22m 15:31:19
+[2m   Duration [22m 7.51s[2m (transform 1.34s, setup 9.83s, import 15.29s, tests 5.50s, environment 51.22s)[22m
+
